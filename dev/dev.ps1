@@ -7,11 +7,12 @@ Remove-Item -Path ./artifacts -Recurse -Force -ErrorAction SilentlyContinue
 
 Convert-AltAudioMissingMp3 -Path ./data/recording
 Convert-AltAudioMissingJson -Path ./data/recording
-$assistants = Get-AltAssistants -Path ./data/assistants
+Remove-AltAssistants -Path ./data/assistants
+$a = Deploy-AltAssistants -Path ./data/assistants
 
 $thread = New-Thread
 $thread = $thread | Add-ThreadMessage -Message "Maak een gesprek verslag van de volgende conversatie: # " -PassThru
-$thread = Start-ThreadRun -Thread $thread -Assistant $assistants['gereatrisch-arts'] | Wait-ThreadRun | Receive-ThreadRun -Wait
+$thread = Start-ThreadRun -Thread $thread -Assistant $a['gereatrisch-arts'] | Wait-ThreadRun | Receive-ThreadRun -Wait
 $thread
 
 # # Get the latest message from the assistant

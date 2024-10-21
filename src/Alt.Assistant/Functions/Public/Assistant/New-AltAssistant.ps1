@@ -8,12 +8,14 @@ function New-AltAssistant {
       [Parameter(ValueFromPipelineByPropertyName = $true)]
       [bool] $UseCodeInterpreter,
       [Parameter(ValueFromPipelineByPropertyName = $true)]
-      [string] $Model
+      [string] $Model,
+      [Parameter(ValueFromPipelineByPropertyName = $true)]
+      [string] $Temperature
    )
    begin { . "$PSScriptRoot/../../begin.ps1" -InvocationInfo $MyInvocation }
    end { . "$PSScriptRoot/../../end.ps1" -InvocationInfo $MyInvocation }
     
    process {
-      return New-Assistant -Name $Name -Instructions $Instructions -UseCodeInterpreter:$UseCodeInterpreter -Model $Model
+      return New-Assistant -Name $Name -Instructions $Instructions -UseCodeInterpreter:$UseCodeInterpreter -Model $Model -Temperature $Temperature
    }
 }
