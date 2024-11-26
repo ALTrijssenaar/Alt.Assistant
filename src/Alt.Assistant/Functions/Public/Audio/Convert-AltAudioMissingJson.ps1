@@ -8,9 +8,9 @@ function Convert-AltAudioMissingJson {
    end { . "$PSScriptRoot/../../end.ps1" -InvocationInfo $MyInvocation }
     
    process {
-      Get-ChildItem -Path $Path -Filter *.m4a | ForEach-Object {
+      Get-ChildItem -Path $Path -Filter *.mp3 | ForEach-Object {
          $sourceFilePath = $_.FullName
-         $targetFilePath = $_.FullName -replace '\.m4a$', '.mp3'
+         $targetFilePath = $_.FullName -replace '\.mp3$', '.json'
       
          Convert-AltAudioMp32Json -SourceFilePath $sourceFilePath -TargetFilePath $targetFilePath
       }  
